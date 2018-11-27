@@ -20,12 +20,28 @@ class ImageData:
 		if bytes == Nome:
 			self.bytes = img.tobytes()
 		return self.bytes
-		
 
-dir = "D:\Google Drive\! Documentos\Imagens\Wallpapers desktop"
+		
+# Configuration class
+# Stores config stuff
+class Configuration:
+	def __init__(self):
+		directory = None
+		useHash = True
+		useHistogram = True
+		usePixel = True
+		useDimension = True
+	def getConfig(self):
+		f = open('config.txt', r)
+		directory = f.readline()
+		f.close()
+			
+
+# Main Code
+config = Configuration()
+dir = config.getConfig().directory
 imglist = os.listdir(dir)
 iclist = []
-
 for imgname in imglist:
 	img = Image.open(dir+"\\"+imgname)
 	print(imgname)
