@@ -10,6 +10,7 @@ class ImageData:
 		self.name = name
 		self.bytes = None		
 		self.hash = None
+		self.size = None
 	def printall(self):
 		print(self.name, self.hash)
 	def getHash(self):
@@ -32,29 +33,46 @@ class Configuration:
 		usePixel = True
 		useDimension = True
 	def getConfig(self):
-		f = open('config.txt', r)
+		f = open('config.txt', 'r')
 		directory = f.readline()
 		f.close()
+		return directory
 			
 
 # Main Code
 config = Configuration()
-dir = config.getConfig().directory
+dir = config.getConfig()
+print(dir)
 imglist = os.listdir(dir)
 iclist = []
 for imgname in imglist:
 	img = Image.open(dir+"\\"+imgname)
-	print(imgname)
-	print(type(img))
+	print(imgname, end=' ')
+	#print(type(img))
 	imghash = hashlib.md5(img.tobytes()).hexdigest()
 	
 	# Create ImageData object
-	imgobj = ImageData(img, imgname)
-	#imgobj.printall()
+	imgobj = ImageData(img, imgname)	
+	imgobj.size = img.size
+	print(img.size)
 	iclist.append(imgobj)
+	#imgobj.printall()
 
-	#for i in range(len(iclist)-2, 0, -1):
-	#	if imgobj.hash == iclist[i].hash:
-	#		print(imgobj.name, iclist[i].name)
-	#		if imgobj.img == iclist[i].img
-	#			print("confirmed")
+	for i in range(len(iclist)-2, 0, -1):
+		if imgobj.size == iclist[i].size:
+			if imgobj.hash == iclist[i].hash:
+				print(imgobj.name, iclist[i].name)
+				print(imgobj.size)
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
