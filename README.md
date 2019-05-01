@@ -1,2 +1,2 @@
-# ImageOrganizar
-Simple Python code to compare and label images
+# Image Organizer
+Simple Python program to label images and find duplicates;
